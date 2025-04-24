@@ -19,10 +19,13 @@ app.use(session({
   saveUninitialized: true
 }));
 
+
+// /
 app.get("/", (req, res) => {
     res.send("Backend is running! Welcome to mytools-server.");
   });
 
+// /login
 app.post("/login", (req, res) => {
     const users = JSON.parse(fs.readFileSync("users.json"));
     const { username, password } = req.body;
@@ -34,6 +37,7 @@ app.post("/login", (req, res) => {
     }
   });
 
+// /userdata
 app.get("/userdata", (req, res) => {
   if (!req.session.user) return res.sendStatus(403);
   const users = JSON.parse(fs.readFileSync("users.json"));
