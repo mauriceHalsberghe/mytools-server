@@ -23,19 +23,20 @@ app.use(session({
 // /
 app.get("/", (req, res) => {
     res.send("Backend is running! Welcome to mytools-server.");
-  });
+});
 
 // /login
 app.post("/login", (req, res) => {
+    console.log("Login attempt:", req.body);  // Add this line to debug
     const users = JSON.parse(fs.readFileSync("users.json"));
     const { username, password } = req.body;
     if (users[username] && users[username].password === password) {
-      req.session.user = username;
-      res.sendStatus(200);
+        req.session.user = username;
+        res.sendStatus(200);
     } else {
-      res.sendStatus(401);
+        res.sendStatus(401);
     }
-  });
+});
 
 // /userdata
 app.get("/userdata", (req, res) => {
