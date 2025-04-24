@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-  origin: "https://yourusername.github.io",
+  origin: "https://mauricehalsberghe.github.io/mytools",
   credentials: true
 }));
 
