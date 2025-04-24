@@ -1,0 +1,9 @@
+{
+    "johndoe": {
+      "password": "1234",
+      "data": {
+        "tools": ["Hammer", "Screwdriver"]
+      }
+    }
+  }
+  
