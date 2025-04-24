@@ -20,15 +20,15 @@ app.use(session({
 }));
 
 app.post("/login", (req, res) => {
-  const users = JSON.parse(fs.readFileSync("users.json"));
-  const { username, password } = req.body;
-  if (users[username] && users[username].password === password) {
-    req.session.user = username;
-    res.sendStatus(200);
-  } else {
-    res.sendStatus(401);
-  }
-});
+    const users = JSON.parse(fs.readFileSync("users.json"));
+    const { username, password } = req.body;
+    if (users[username] && users[username].password === password) {
+      req.session.user = username;
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(401);
+    }
+  });
 
 app.get("/userdata", (req, res) => {
   if (!req.session.user) return res.sendStatus(403);
