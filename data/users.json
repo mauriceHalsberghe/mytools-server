@@ -1,0 +1,52 @@
+[
+  { 
+    "id": 1, 
+    "username": "Alice",
+    "email": "alice@example.com",
+    "password": "password123",
+    "images": [
+      {
+        "title": "Vacation Photo",
+        "url": "https://picsum.photos/id/103/400/200",
+        "date": "2025-04-01"
+      },
+      {
+        "title": "Birthday Party",
+        "url": "https://picsum.photos/id/143/400/200",
+        "date": "2025-02-15"
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Buy Groceries",
+        "description": "Milk, Eggs, Bread",
+        "date": "2025-04-28"
+      },
+      {
+        "title": "Meeting with Bob",
+        "description": "Discuss the new project",
+        "date": "2025-04-30"
+      }
+    ]
+  },
+  { 
+    "id": 2, 
+    "username": "Bob",
+    "email": "bob@example.com",
+    "password": "securepass456",
+    "images": [
+      {
+        "title": "Workshop Snapshot",
+        "url": "https://picsum.photos/id/237/400/200",
+        "date": "2025-03-20"
+      }
+    ],
+    "tasks": [
+      {
+        "title": "Finish Report",
+        "description": "Complete the quarterly financial report",
+        "date": "2025-05-01"
+      }
+    ]
+  }
+]

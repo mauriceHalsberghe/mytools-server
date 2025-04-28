@@ -1,50 +1,22 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const session = require("express-session");
-const fs = require("fs");
-const cors = require("cors");
+import dotenv from 'dotenv';
+import express from 'express';
+import bodyParser from 'body-parser';
+import userRouter from './routes/userRoutes.js';
+import cors from 'cors';
+
+dotenv.config();
+
+const PORT = process.env.PORT;
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
-app.use(cors({
-    origin: "https://mauricehalsberghe.github.io",  // Allow requests from GitHub Pages domain
-    credentials: true  // Ensure cookies are allowed
-}));
-
 app.use(bodyParser.json());
-app.use(session({
-    secret: "secret", 
-    resave: false, 
-    saveUninitialized: true,
-    cookie: { secure: false }  // Ensure this is false for development (if using http instead of https)
-  }));
+app.use(cors());
+app.use(userRouter);    
 
-
-// /
-app.get("/", (req, res) => {
-    res.send("Backend is running! Welcome to mytools-server.");
+app.get('/', (req, res) => {
+    res.send('User server is online and running');
 });
 
-// /login
-app.post("/login", (req, res) => {
-    console.log("Session ID after login:", req.sessionID);  // Log session ID
-    const users = JSON.parse(fs.readFileSync("users.json"));
-    const { username, password } = req.body;
-    if (users[username] && users[username].password === password) {
-        req.session.user = username;  // Set session user
-        res.sendStatus(200);
-    } else {
-        res.sendStatus(401);
-    }
+app.listen(PORT, () => {
+    console.log(`Onze server is aan het luisteren op: http://localhost:${PORT}`);
 });
-
-// /userdata
-app.get("/userdata", (req, res) => {
-    if (!req.session.user) {
-        return res.sendStatus(403);  // Forbidden if no user in session
-    }
-    const users = JSON.parse(fs.readFileSync("users.json"));
-    res.json(users[req.session.user].data);
-});
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
