@@ -24,6 +24,19 @@ class User extends Model {
       },
     };
   }
+
+  static get relationMappings() {
+    return {
+      images: {
+        relation: Model.HasManyRelation,
+        modelClass: Image,
+        join: {
+          from: "users.id",
+          to: "images.user_id",
+        },
+      },
+    };
+  }
 }
 
 export default User;

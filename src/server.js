@@ -1,9 +1,8 @@
 import express from 'express';
-
 import { PORT } from "./consts.js";
 
 import * as API_UserController from "./controllers/userControllers.js";
-
+import * as API_ImageController from "./controllers/imageControllers.js";
 
 const app = express();
 
@@ -12,7 +11,8 @@ app.get('/', (req, res) => {
 });
 
 app.get("/users", API_UserController.getUsers);
+app.get("/images", API_ImageController.getImages);
 
 app.listen(PORT, () => {
-    console.log(`Onze server is aan het luisteren op: http://localhost:${PORT}`);
+    console.log(`MyTools Server is online on http://localhost:${PORT}`);
 });
