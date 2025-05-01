@@ -15,4 +15,4 @@ app.get("/images", API_ImageController.getImages);
 
 app.listen(PORT, () => {
     console.log(`MyTools Server is online on http://localhost:${PORT}`);
-});
+}); 
