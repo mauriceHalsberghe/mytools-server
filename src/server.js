@@ -1,10 +1,17 @@
 import express from 'express';
 import { PORT } from "./consts.js";
+import cors from 'cors';
 
 import * as API_UserController from "./controllers/userControllers.js";
 import * as API_ImageController from "./controllers/imageControllers.js";
 
 const app = express();
+
+app.use(cors({
+      origin: "https://mauricehalsberghe.github.io",  // Allow requests from GitHub Pages domain
+      credentials: true  // Ensure cookies are allowed
+  }));
+
 
 app.get('/', (req, res) => {
     res.send('User server is online and running');
