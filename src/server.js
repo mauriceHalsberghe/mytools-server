@@ -7,11 +7,22 @@ import * as API_ImageController from "./controllers/imageControllers.js";
 
 const app = express();
 
-app.use(cors({
-      origin: "https://mauricehalsberghe.github.io",  // Allow requests from GitHub Pages domain
-      credentials: true  // Ensure cookies are allowed
-  }));
+const allowedOrigins = [
+    'http://127.0.0.1:5500/',
+    'http://localhost:5500',
+    'https://mauricehalsberghe.github.io/mytools/'
+  ];
 
+  app.use(cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error('Not allowed by CORS'));
+      }
+    }
+  }));
 
 app.get('/', (req, res) => {
     res.send('User server is online and running');
